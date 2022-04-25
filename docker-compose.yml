@@ -1,0 +1,36 @@
+version: '3.2'
+
+services:
+  postgres:
+    container_name: db
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: vitaly
+      POSTGRES_PASSWORD: 123qwe321ewq
+      POSTGRES_DB: news
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./.data/var/lib/postgresql/data:/var/lib/postgresql/data
+
+  php-fpm:
+    container_name: php
+    build: docker/php
+    restart: always
+    volumes:
+      - ./:/var/www:cached
+    depends_on:
+      - postgres
+
+  nginx:
+    container_name: nginx
+    restart: always
+    build: docker/nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - php-fpm
+    volumes:
+      - ./:/var/www:cached
+      - ./.data/var/logs/nginx/:/var/log/nginx:cached

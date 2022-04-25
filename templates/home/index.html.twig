@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Современные новости{% endblock %}
+
+{% block body %}
+    {{ include('components/navbar.html.twig') }}
+
+    <main class="container">
+        <div class="row mb-2 d-flex justify-content-around">
+            {% for news_item in news_list %}
+                {{ include('components/news-card.html.twig', {'news_item': news_item}) }}
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,22 @@
+<div class="container ">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+                <a class="link-secondary" href="#"></a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-dark" href="{{ path('app_home') }}">Современные новости</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                {% if app.user is null %}
+                <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_login') }}">Войти</a>
+                {% else %}
+                <div>
+                    <a>Здравствуй, {{ app.user.name }}</a>
+                    <a class="btn btn-sm btn-outline-danger" href="{{ path('app_logout') }}">Выйти</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+</div>

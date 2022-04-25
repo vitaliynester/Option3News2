@@ -1,0 +1,11 @@
+<div class="col-md-6">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <a href="{{ path('news_detail', {'id': news_item.id}) }}"><h3 class="mb-1">{{ news_item.title }}</h3></a>
+            <div class="mb-1 text-muted">{{ news_item.createdAt|date("d-m-Y H:i:s") }}</div>
+            <div class="mb-1 text-info">Количество просмотров: {{ news_item.viewCount }}</div>
+            <div class="mb-1" style="color: #87b691">Количество комментариев: {{ news_item.comments.count }}</div>
+            <p class="card-text mb-auto mt-2">{{ news_item.annotation }}</p>
+        </div>
+    </div>
+</div>

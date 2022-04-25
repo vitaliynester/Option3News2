@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Современные новости{% endblock %}
+
+{% block body %}
+    {{ include('components/navbar.html.twig') }}
+
+    <main class="container">
+        <h6 class="text-secondary">{{ news.createdAt|date("d-m-Y H:i:s") }}</h6>
+        <h2 class="font-weight-bold">{{ news.title }}</h2>
+        <h5 class="text-secondary">{{ news.annotation }}</h5>
+        <div>
+            {{ news.description }}
+        </div>
+
+        <h4 class="mt-5">Комментарии:</h4>
+        {% if app.user is not null %}
+            {{ form_start(comment_form) }}
+
+            <div class="form-group">
+                {{ form_label(comment_form.body, null,
+                    form_errors(comment_form.body)|length ? { 'label_attr': {'class': 'text-danger'} } : {}) }}
+                {{ form_widget(comment_form.body, form_errors(comment_form.body)|length
+                    ? {'attr': {'class': 'form-control is-invalid'}}
+                    : {'attr': {'class': 'form-control'}} ) }}
+                <span class="text-danger">{{ form_errors(comment_form.body) }}</span>
+                {{ form_widget(comment_form.save) }}
+            </div>
+
+            {{ form_end(comment_form) }}
+        {% endif %}
+
+        {% if comments is not empty %}
+            {% for comment in comments %}
+                {{ include('components/comment-card.html.twig', {'comment': comment}) }}
+            {% endfor %}
+
+        {% else %}
+            <div class="text-center">
+                Комментарии отсутствуют!
+            </div>
+        {% endif %}
+
+    </main>
+{% endblock %}
