@@ -12,7 +12,7 @@
                 <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_login') }}">Войти</a>
                 {% else %}
                 <div>
-                    <a>Здравствуй, {{ app.user.name }}</a>
+                    <a class="navbar-username">Здравствуй, {{ app.user.name }}</a>
                     <a class="btn btn-sm btn-outline-danger" href="{{ path('app_logout') }}">Выйти</a>
                 </div>
                 {% endif %}

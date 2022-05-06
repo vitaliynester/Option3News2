@@ -1,7 +1,7 @@
 <div class="card w-100">
     <div class="card-body">
         <div class="d-flex justify-content-between">
-            <h5 class="card-title">{{ comment.owner.name }}</h5>
+            <h5 class="card-title">{{ comment.ownerName }}</h5>
             <div class="mb-1 text-muted">{{ comment.createdAt|date("d-m-Y H:i:s") }}</div>
         </div>
         <p class="card-text">{{ comment.body }}</p>

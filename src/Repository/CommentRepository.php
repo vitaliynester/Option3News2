@@ -22,7 +22,10 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
-    public function findOnlyActiveForNews(News $news)
+    /**
+     * @return Comment[]
+     */
+    public function findOnlyActiveForNews(News $news): array
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.active = :val')

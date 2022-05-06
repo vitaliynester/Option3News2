@@ -22,15 +22,17 @@ class AppFixtures extends Fixture
         $admin->setName('admin');
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPassword($this->userPasswordHasher->hashPassword($admin, '123321'));
+        $admin->setApiToken('adminToken');
         $manager->persist($admin);
 
         $user = new User();
         $user->setEmail('developer@mail.ru');
         $user->setName('developer');
         $user->setPassword($this->userPasswordHasher->hashPassword($user, '123321'));
+        $user->setApiToken('userToken');
         $manager->persist($user);
 
-        for ($i = 1; $i < 6; ++$i) {
+        for ($i = 1; $i < 69; ++$i) {
             $news = new News();
             $news->setOwner($admin);
             $news->setTitle("Название новости $i");

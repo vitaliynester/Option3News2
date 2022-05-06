@@ -44,4 +44,9 @@ class NewsRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
+    public function findPerPage(int $page): array
+    {
+        return self::findBy([], ['createdAt' => 'DESC', 'id' => 'DESC'], 10, ($page - 1) * 10);
+    }
 }

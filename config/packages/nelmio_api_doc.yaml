@@ -1,0 +1,18 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: NEWS API
+            description: API для новостей и их комментариев
+            version: 1.0.0
+        components:
+            securitySchemes:
+                apiKey:
+                    type: apiKey
+                    description: 'API ключ доступа'
+                    name: X-AUTH-TOKEN
+                    in: header
+        security:
+            - apiKey: [ ]
+    areas:
+        default:
+            path_patterns: [ ^/api/v1 ]
