@@ -8,6 +8,6 @@ class UserNotFoundException extends RuntimeException
 {
     public function __construct()
     {
-        parent::__construct('Неправильные данные!', 400);
+        parent::__construct('Неправильные данные!', 404);
     }
 }

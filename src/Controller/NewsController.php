@@ -124,10 +124,9 @@ class NewsController extends AbstractController
     public function getById(int $id): Response
     {
         try {
-            $news = $this->newsService->getNewsById($id);
-            return $this->json($news);
+            return $this->json($this->newsService->getNewsById($id));
         } catch (NewsNotFoundException $exception) {
-            return $this->json(new ErrorResponse($exception));
+            return $this->json(new ErrorResponse($exception), $exception->getCode());
         }
     }
 
@@ -147,7 +146,7 @@ class NewsController extends AbstractController
         try {
             return $this->json($this->commentService->getAllActive($id));
         } catch (NewsNotFoundException $exception) {
-            return $this->json(new ErrorResponse($exception));
+            return $this->json(new ErrorResponse($exception), $exception->getCode());
         }
     }
 }
