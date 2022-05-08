@@ -24,8 +24,7 @@ class CommentTest extends WebTestCase
         $form['email'] = 'developer@mail.ru';
         $form['password'] = '123321';
         $client->submit($form);
-        $crawler = $client->followRedirect();
-        $client->reload();
+        $client->followRedirect();
         $this->assertResponseIsSuccessful();
         $this->assertPageTitleSame('Современные новости');
         $this->assertSelectorTextContains('.navbar-username', 'Здравствуй,');
@@ -48,7 +47,6 @@ class CommentTest extends WebTestCase
         $form = $sendButton->form();
         $form['comment[body]'] = 'Тестовый коммент';
         $client->submit($form);
-        $client->reload();
         $this->assertCount(0, $crawler->filter('.is-invalid'));
     }
 }
